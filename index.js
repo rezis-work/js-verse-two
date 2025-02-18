@@ -10,7 +10,7 @@ const explanation = document.getElementById("explanation");
 // Its value should be an object with a statement, true/false answer, and explanation
 const fact = {
   statement: "Array is an primitive type in JavaScript",
-  answer: false,
+  answer: "false",
   explanation: "Array is an object in JavaScript",
 };
 
@@ -28,14 +28,27 @@ const enable = (button) => button.removeAttribute("disabled");
 const isCorrect = (guess) => guess === fact.answer;
 
 // TODO 6A: Use a for loop to add a click event listener to each of the optionButtons
-// TODO 6B: Within the event handler function, display the fact's explanation by setting the text of the explanation element
-
-// TODO 7: Within the event handler function,
-// Use a for loop to disable all the option buttons
-
-// TODO 8: Within the event handler function,
-// Get the guessed value from the clicked button
-// Use a conditional to compare the guess to the fact's answer
-// and add the "correct"/"incorrect" class as appropriate
+for (let button of optionsButtons) {
+  button.addEventListener("click", () => {
+    // TODO 6B: Within the event handler function, display the fact's explanation by setting the text of the explanation element
+    explanation.textContent = fact.explanation;
+    // TODO 7: Within the event handler function,
+    // Use a for loop to disable all the option buttons
+    for (let sameButton of optionsButtons) {
+      disable(sameButton);
+    }
+    // TODO 8: Within the event handler function,
+    // Get the guessed value from the clicked button
+    // Use a conditional to compare the guess to the fact's answer
+    // and add the "correct"/"incorrect" class as appropriate
+    if (isCorrect(button.value)) {
+      button.classList.add("correct");
+      console.log(button.value);
+    } else {
+      button.classList.add("incorrect");
+      console.log(button.value);
+    }
+  });
+}
 
 // ---------------------------------------------------------------------------------------
